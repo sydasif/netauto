@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}Network Devices - {{ block.super }}{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+      <i class="fas fa-server"></i> Network Devices
+    </h1>
+    <a href="{% url 'device_create' %}" class="btn btn-primary">
+      <i class="fas fa-plus"></i> Add Device
+    </a>
+  </div>
+  <!-- Search and Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <form method="get" class="row g-3">
+        <div class="col-md-4">
+          <input type="text"
+                 name="search"
+                 class="form-control"
+                 placeholder="Search devices..."
+                 value="{{ search_query }}">
+        </div>
+        <div class="col-md-3">
+          <select name="device_type" class="form-control">
+            <option value="">All Device Types</option>
+            {% for value, label in device_types %}
+              <option value="{{ value }}"
+                      {% if device_type_filter == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select name="vendor" class="form-control">
+            <option value="">All Vendors</option>
+            {% for value, label in vendors %}
+              <option value="{{ value }}"
+                      {% if vendor_filter == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-outline-primary w-100">
+            <i class="fas fa-search"></i> Filter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Devices Table -->
+  <div class="card">
+    <div class="card-body">
+      {% if devices %}
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Name</th>
+                <th>IP Address</th>
+                <th>Type</th>
+                <th>Vendor</th>
+                <th>Platform</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for device in devices %}
+                <tr>
+                  <td>
+                    <strong>{{ device.name }}</strong>
+                  </td>
+                  <td>{{ device.ip_address }}</td>
+                  <td>
+                    <span class="badge bg-secondary">{{ device.get_device_type_display }}</span>
+                  </td>
+                  <td>{{ device.get_vendor_display }}</td>
+                  <td>{{ device.platform }}</td>
+                  <td>{{ device.location }}</td>
+                  <td>
+                    {% if device.is_active %}
+                      <span class="badge bg-success">Active</span>
+                    {% else %}
+                      <span class="badge bg-danger">Inactive</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="{% url 'device_detail' device.pk %}"
+                       class="btn btn-sm btn-outline-primary">View</a>
+                    <a href="{% url 'device_update' device.pk %}"
+                       class="btn btn-sm btn-outline-warning">Edit</a>
+                    <a href="{% url 'device_delete' device.pk %}"
+                       class="btn btn-sm btn-outline-danger">Delete</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="text-center py-4">
+          <i class="fas fa-server fa-3x text-muted mb-3"></i>
+          <h4>No devices found</h4>
+          <p class="text-muted">Start by adding your first network device.</p>
+          <a href="{% url 'device_create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add First Device
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

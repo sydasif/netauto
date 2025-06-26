@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Delete {{ device.name }} - {{ block.super }}{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+      <i class="fas fa-trash-alt"></i> Delete Device
+    </h1>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <p class="lead">
+        Are you sure you want to delete the device "<strong>{{ device.name }}</strong>"?
+      </p>
+      <p class="text-danger">This action cannot be undone.</p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'device_detail' device.pk %}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}{{ device.name }} Details - {{ block.super }}{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+      <i class="fas fa-info-circle"></i> {{ device.name }}
+    </h1>
+    <div>
+      <a href="{% url 'device_update' device.pk %}" class="btn btn-warning">
+        <i class="fas fa-edit"></i> Edit
+      </a>
+      <a href="{% url 'device_delete' device.pk %}" class="btn btn-danger">
+        <i class="fas fa-trash-alt"></i> Delete
+      </a>
+    </div>
+  </div>
+  <div class="card mb-4">
+    <div class="card-header">Device Information</div>
+    <div class="card-body">
+      <p>
+        <strong>IP Address:</strong> {{ device.ip_address }}
+      </p>
+      <p>
+        <strong>Device Type:</strong> {{ device.get_device_type_display }}
+      </p>
+      <p>
+        <strong>Vendor:</strong> {{ device.get_vendor_display }}
+      </p>
+      <p>
+        <strong>Platform:</strong> {{ device.platform }}
+      </p>
+      <p>
+        <strong>Username:</strong> {{ device.username }}
+      </p>
+      <p>
+        <strong>Port:</strong> {{ device.port }}
+      </p>
+      <p>
+        <strong>Location:</strong> {{ device.location }}
+      </p>
+      <p>
+        <strong>Status:</strong>
+        {% if device.is_active %}
+          <span class="badge bg-success">Active</span>
+        {% else %}
+          <span class="badge bg-danger">Inactive</span>
+        {% endif %}
+      </p>
+      {% if device.description %}
+        <p>
+          <strong>Description:</strong> {{ device.description }}
+        </p>
+      {% endif %}
+      <p>
+        <strong>Created At:</strong> {{ device.created_at }}
+      </p>
+      <p>
+        <strong>Last Updated:</strong> {{ device.updated_at }}
+      </p>
+    </div>
+  </div>
+  <a href="{% url 'device_list' %}" class="btn btn-secondary">
+    <i class="fas fa-arrow-left"></i> Back to Device List
+  </a>
+{% endblock %}
