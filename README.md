@@ -19,30 +19,30 @@ NetAuto is a web-based platform designed to centralize the management and automa
 
 ## 🚦 Project Roadmap & Status
 
-| Phase | Feature                           | Status                                 |
-| :---: | --------------------------------- | -------------------------------------- |
-|   1   | Device model + Django Admin UI    | ✅ **Completed**                       |
-|   2   | Device List/Create/Update/Delete UI | ▶️ **In Progress**                     |
-|   3   | CLI Runner (Nornir Task Execution)  | ⏳ **Planned**                         |
-|   4   | User Authentication & Roles         | ⏳ **Planned**                         |
-|   5   | Job History & Output Logging      | ⏳ **Planned**                         |
-|   6   | REST API (DRF)                    | 🌟 **Future**                          |
-|   7   | Device Monitoring & Alerting      | 🌟 **Future**                          |
+| Phase | Feature                             | Status            |
+| :---: | ----------------------------------- | ----------------- |
+|   1   | Device model + Django Admin UI      | ✅ **Completed**   |
+|   2   | Device List/Create/Update/Delete UI | ▶️ **In Progress** |
+|   3   | CLI Runner (Nornir Task Execution)  | ⏳ **Planned**     |
+|   4   | User Authentication & Roles         | ⏳ **Planned**     |
+|   5   | Job History & Output Logging        | ⏳ **Planned**     |
+|   6   | REST API (DRF)                      | 🌟 **Future**      |
+|   7   | Device Monitoring & Alerting        | 🌟 **Future**      |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer          | Tool                               | Description                                    |
-| :------------- | :--------------------------------- | :--------------------------------------------- |
-| **Backend**      | Django (Python)                    | Core web framework for rapid development.      |
-| **Automation** | Nornir + Netmiko/Napalm            | Engine for network device automation (SSH).    |
-| **Frontend**     | Django Templates + (Minimal CSS/JS) | Server-side rendered, functional web UI.       |
-| **Database**     | SQLite (dev), PostgreSQL (prod)    | Flexible data persistence.                     |
-| **Auth**       | Django Auth                        | Built-in user authentication.                  |
-| **Task Queue**   | Celery (Future)                    | For running long automation jobs asynchronously. |
-| **API Layer**    | Django Rest Framework (Future)     | For building a comprehensive REST API.         |
-| **Deployment**   | Localhost / Docker                 | Simple and flexible deployment options.        |
+| Layer          | Tool                                | Description                                      |
+| :------------- | :---------------------------------- | :----------------------------------------------- |
+| **Backend**    | Django (Python)                     | Core web framework for rapid development.        |
+| **Automation** | Nornir + Netmiko/Napalm             | Engine for network device automation (SSH).      |
+| **Frontend**   | Django Templates + (Minimal CSS/JS) | Server-side rendered, functional web UI.         |
+| **Database**   | SQLite (dev), PostgreSQL (prod)     | Flexible data persistence.                       |
+| **Auth**       | Django Auth                         | Built-in user authentication.                    |
+| **Task Queue** | Celery (Future)                     | For running long automation jobs asynchronously. |
+| **API Layer**  | Django Rest Framework (Future)      | For building a comprehensive REST API.           |
+| **Deployment** | Localhost / Docker                  | Simple and flexible deployment options.          |
 
 ---
 
@@ -156,4 +156,4 @@ Contributions are welcome! If you have suggestions or want to add a feature, ple
 
 ## 📄 License
 
-This project is open-source and distributed under the **MIT License**. See the `LICENSE` file for more information.
+This project is open-source and distributed under the **MIT License**. See the [`LICENSE`](/LICENSE) file for more information.
