@@ -5,9 +5,11 @@
     <h1>
       <i class="fas fa-server"></i> Network Devices
     </h1>
-    <a href="{% url 'device_create' %}" class="btn btn-primary">
-      <i class="fas fa-plus"></i> Add Device
-    </a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'device_create' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Device
+      </a>
+    {% endif %}
   </div>
   <!-- Search and Filters -->
   <div class="card mb-4">

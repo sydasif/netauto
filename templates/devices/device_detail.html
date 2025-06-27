@@ -5,14 +5,16 @@
     <h1>
       <i class="fas fa-info-circle"></i> {{ device.name }}
     </h1>
-    <div>
-      <a href="{% url 'device_update' device.pk %}" class="btn btn-warning">
-        <i class="fas fa-edit"></i> Edit
-      </a>
-      <a href="{% url 'device_delete' device.pk %}" class="btn btn-danger">
-        <i class="fas fa-trash-alt"></i> Delete
-      </a>
-    </div>
+    {% if user.is_authenticated %}
+      <div>
+        <a href="{% url 'device_update' device.pk %}" class="btn btn-warning">
+          <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'device_delete' device.pk %}" class="btn btn-danger">
+          <i class="fas fa-trash-alt"></i> Delete
+        </a>
+      </div>
+    {% endif %}
   </div>
   <div class="card mb-4">
     <div class="card-header">Device Information</div>

@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -47,6 +48,7 @@ def device_detail(request, pk):
     return render(request, "devices/device_detail.html", {"device": device})
 
 
+@login_required
 def device_create(request):
     """Create a new device"""
     if request.method == "POST":
@@ -63,6 +65,7 @@ def device_create(request):
     )
 
 
+@login_required
 def device_update(request, pk):
     """Update an existing device"""
     device = get_object_or_404(NetworkDevice, pk=pk)
@@ -83,6 +86,7 @@ def device_update(request, pk):
     )
 
 
+@login_required
 def device_delete(request, pk):
     """Delete a device"""
     device = get_object_or_404(NetworkDevice, pk=pk)
