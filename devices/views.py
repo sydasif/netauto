@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 
+from users.views import role_required  # Import the role_required decorator
+
 from .forms import NetworkDeviceForm
 from .models import NetworkDevice
 
@@ -49,6 +51,7 @@ def device_detail(request, pk):
 
 
 @login_required
+@role_required(["admin"])
 def device_create(request):
     """Create a new device"""
     if request.method == "POST":
@@ -66,6 +69,7 @@ def device_create(request):
 
 
 @login_required
+@role_required(["admin"])
 def device_update(request, pk):
     """Update an existing device"""
     device = get_object_or_404(NetworkDevice, pk=pk)
@@ -87,6 +91,7 @@ def device_update(request, pk):
 
 
 @login_required
+@role_required(["admin"])
 def device_delete(request, pk):
     """Delete a device"""
     device = get_object_or_404(NetworkDevice, pk=pk)

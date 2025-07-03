@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}User Profile{% endblock %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0">User Profile</h3>
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Personal Info</legend>
+              {{ user_form.as_p }}
+            </fieldset>
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ profile_form.as_p }}
+              {% if user.profile.profile_picture %}
+                <div class="form-group">
+                  <img src="{{ user.profile.profile_picture.url }}"
+                       alt="Profile Picture"
+                       class="img-thumbnail"
+                       style="max-width: 150px;
+                              max-height: 150px">
+                </div>
+              {% endif %}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Update Profile</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

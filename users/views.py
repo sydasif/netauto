@@ -1,8 +1,28 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
 from django.shortcuts import redirect, render
 
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, ProfileUpdateForm, RegisterForm, UserUpdateForm
+from .models import Profile
+
+
+def role_required(allowed_roles):
+    def decorator(view_func):
+        def wrapper_func(request, *args, **kwargs):
+            if (
+                request.user.is_authenticated
+                and hasattr(request.user, "profile")
+                and request.user.profile.role in allowed_roles
+            ):
+                return view_func(request, *args, **kwargs)
+            raise PermissionDenied
+
+        return wrapper_func
+
+    return decorator
 
 
 def login_view(request):
@@ -49,3 +69,26 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, "users/register.html", {"form": form})
+
+
+@login_required
+def profile(request):
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile
+        )
+
+        if user_form.is_valid() and profile_form.is_valid():
+            with transaction.atomic():
+                user_form.save()
+                profile_form.save()
+            messages.success(request, "Your profile has been updated successfully!")
+            return redirect("profile")
+        messages.error(request, "Please correct the errors below.")
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {"user_form": user_form, "profile_form": profile_form}
+    return render(request, "users/profile.html", context)
