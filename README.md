@@ -1,9 +1,9 @@
 # NetAuto: A Network Automation Web Platform
 
-[![Project Status](https://img.shields.io/badge/status-in%20development-orange)](https://github.com/your-username/netauto)
+[![Project Status](https://img.shields.io/badge/status-in%20development-orange)](https://github.com/netauto-project/netauto)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Django Version](https://img.shields.io/badge/django-4.x-green.svg)](https://www.djangoproject.com/)
+[![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
+[![Django Version](https://img.shields.io/badge/django-5.x-green.svg)](https://www.djangoproject.com/)
 
 NetAuto is a web-based platform designed to centralize the management and automation of network devices like routers, switches, and firewalls. It provides a simple, clean interface for maintaining a device inventory and executing commands, with a modular architecture for future expansion.
 
@@ -19,15 +19,15 @@ NetAuto is a web-based platform designed to centralize the management and automa
 
 ## 🚦 Project Roadmap & Status
 
-| Phase | Feature                             | Status            |
-| :---: | ----------------------------------- | ----------------- |
-|   1   | Device model + Django Admin UI      | ✅ **Completed**   |
-|   2   | Device List/Create/Update/Delete UI | ▶️ **In Progress** |
-|   3   | CLI Runner (Nornir Task Execution)  | ⏳ **Planned**     |
-|   4   | User Authentication & Roles         | ⏳ **Planned**     |
-|   5   | Job History & Output Logging        | ⏳ **Planned**     |
-|   6   | REST API (DRF)                      | 🌟 **Future**      |
-|   7   | Device Monitoring & Alerting        | 🌟 **Future**      |
+| Phase | Feature                             | Status          |
+| :---: | ----------------------------------- | --------------- |
+|   1   | Device model + Django Admin UI      | ✅ **Completed** |
+|   2   | Device List/Create/Update/Delete UI | ✅ **Completed** |
+|   3   | CLI Runner (Nornir Task Execution)  | ⏳ **Planned**   |
+|   4   | User Authentication & Roles         | ⏳ **Planned**   |
+|   5   | Job History & Output Logging        | ⏳ **Planned**   |
+|   6   | REST API (DRF)                      | 🌟 **Future**    |
+|   7   | Device Monitoring & Alerting        | 🌟 **Future**    |
 
 ---
 
@@ -52,7 +52,7 @@ Follow these instructions to get a local development environment running.
 
 ### Prerequisites
 
--   [Python](https://www.python.org/downloads/) (3.9 or higher)
+-   [Python](https://www.python.org/downloads/) (3.13 or higher)
 -   [Git](https://git-scm.com/)
 
 ### Installation
@@ -76,9 +76,8 @@ Follow these instructions to get a local development environment running.
 
 3.  **Install project dependencies:**
     ```bash
-    pip install -r requirements.txt
+    pipenv install
     ```
-    *(Note: You will need to create a `requirements.txt` file containing `Django`, `nornir`, etc.)*
 
 4.  **Set up environment variables:**
     Create a `.env` file in the project root directory by copying the example file:
